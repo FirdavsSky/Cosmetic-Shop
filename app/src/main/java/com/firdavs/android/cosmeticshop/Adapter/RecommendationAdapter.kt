@@ -39,8 +39,9 @@ class RecommendationAdapter(val items: MutableList<ItemsModel>)
         holder.binding.priceTxt.text = "$" + items[position].price.toString()
         holder.binding.ratingTxt.text = items[position].rating.toString()
 
+
         Glide.with(holder.itemView.context)
-            .load(items[position].picUrl)
+            .load(items[position].picUrl[0])
             .apply(RequestOptions.centerCropTransform())
             .error(R.drawable.error_image) // Замените на ваш ресурс изображения для ошибок
             .into(holder.binding.pic)
