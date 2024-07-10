@@ -1,12 +1,14 @@
 package com.firdavs.android.cosmeticshop.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.firdavs.android.cosmeticshop.Activity.DetailActivity
 import com.firdavs.android.cosmeticshop.Model.ItemsModel
 import com.firdavs.android.cosmeticshop.R
 import com.firdavs.android.cosmeticshop.databinding.ViewholderRecommendBinding
@@ -46,6 +48,11 @@ class RecommendationAdapter(val items: MutableList<ItemsModel>)
             .error(R.drawable.error_image) // Замените на ваш ресурс изображения для ошибок
             .into(holder.binding.pic)
 
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("object", items[position])
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = items.size
